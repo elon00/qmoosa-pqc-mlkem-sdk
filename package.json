@@ -1,0 +1,32 @@
+{
+  "name": "@qmoosa/pqc-mlkem-sdk",
+  "version": "1.0.0",
+  "description": "QMOOSA Post-Quantum Cryptography SDK — Client Abstractions, Hybrid Handshake Protocol & Serialization Utilities",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test tests/sdk.test.mjs",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@qmoosa/pqc-mlkem-protocol": "file:../qmoosa-pqc-mlkem-protocol",
+    "@qmoosa/pqc-mlkem-engine": "file:../qmoosa-pqc-mlkem-engine"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
+  "keywords": [
+    "qmoosa",
+    "pqc",
+    "fips-203",
+    "ml-kem",
+    "sdk",
+    "typescript",
+    "post-quantum-handshake"
+  ],
+  "author": "elon00",
+  "license": "MIT"
+}
