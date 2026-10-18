@@ -135,7 +135,7 @@ export class MlKemClient {
   }
 
   public decapsulateHybridSecret(
-    localHybridPrivateKey: { pqcDecapsulationKeyHex: string; ecdhPrivateKeyHex: string },
+    localHybridPrivateKey: { pqcDecapsulationKeyHex: string; ecdhPrivateKeyHex: string; ecdhPublicKeyHex?: string },
     receivedHybridCiphertext: { pqcCiphertextHex: string; ecdhEphemeralPublicKeyHex: string },
     paramName: MlKemParameterName = ML_KEM_768.name
   ): string {
@@ -143,9 +143,10 @@ export class MlKemClient {
     const ecdhPrivateKey = hexToBytes(localHybridPrivateKey.ecdhPrivateKeyHex);
     const pqcCiphertext = hexToBytes(receivedHybridCiphertext.pqcCiphertextHex);
     const ecdhEphemeralPublicKey = hexToBytes(receivedHybridCiphertext.ecdhEphemeralPublicKeyHex);
+    const ecdhPublicKey = localHybridPrivateKey.ecdhPublicKeyHex ? hexToBytes(localHybridPrivateKey.ecdhPublicKeyHex) : undefined;
 
     const ss = this.engine.decapsulateHybrid(
-      { pqcDk, ecdhPrivateKey },
+      { pqcDk, ecdhPrivateKey, ecdhPublicKey },
       { pqcCiphertext, ecdhEphemeralPublicKey },
       paramName
     );
